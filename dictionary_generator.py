@@ -30,8 +30,15 @@ def main():
     elif args.alphabet == 'alnumspec':
         args.alphabet = [char for char in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"£$%^&*()_+-=[]{};:\'@#~,<.>/?\\|']
     dictionary = create_dictionary(args.target, args.alphabet)
-    df = pd.DataFrame(dictionary, columns=['Dictionary'])
-    df.to_excel(args.output)
+    if ".xlsx" in args.output.lower():
+        df = pd.DataFrame(dictionary, columns=['Dictionary'])
+        df.to_excel(args.output)
+    elif ".txt" in args.output.lower():
+        with open(args.output, "w") as file:
+            for d in dictionary:
+                file.write(d)
+                file.write("\n")
+            file.close()
 
 if __name__ == "__main__":
     main()
