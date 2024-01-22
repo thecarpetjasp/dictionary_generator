@@ -39,6 +39,8 @@ def main():
                 file.write(d)
                 file.write("\n")
             file.close()
+    else:
+        raise Exception("File extension not supported in this yet. Feel free to edit the code")
 
 if __name__ == "__main__":
     main()
